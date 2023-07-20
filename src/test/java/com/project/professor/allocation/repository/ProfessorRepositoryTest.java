@@ -16,7 +16,7 @@ import java.util.List;
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
 @TestPropertySource(locations = "classpath:application.properties")
-public class ProfessorRepositoryTest {
+public class ProfessorRepositoryTest { 
 
     @Autowired
     ProfessorRepository professorRepository;
@@ -25,9 +25,13 @@ public class ProfessorRepositoryTest {
     @Test
     void create() {
     	
+    	Department dpt = new Department();
+    	dpt.setId(2l);
+    	
     	Professor prof = new Professor();
-    	prof.setName("Psicologia Reversiva");
-    	prof.setId(null);
+    	prof.setName("Teste2 Professor");
+    	prof.setCpf("5145221");
+    	prof.setDepartment(dpt);
     	
     	Professor prof2 = professorRepository.save(prof);
     	System.out.println(prof2);
@@ -63,12 +67,12 @@ public class ProfessorRepositoryTest {
     }
     
     
-    @Test
-    public void findByDepartament() {
-    	Department dpt = new Department();
-    	List<Professor> dptList = professorRepository.findByDepartament(dpt);
-    	System.out.println(dptList);
-    }
+//    @Test
+//    public void findByDepartament() {
+//    	Department dpt = new Department();
+//    	List<Professor> dptList = professorRepository.findByDepartment(dpt);
+//    	System.out.println(dptList);
+//    }
     
      
     

@@ -23,7 +23,7 @@ public class Allocation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idLong;
+	private Long id;
 
 	@Column(name = "DayOfWeek", nullable = false)
 	private DayOfWeek dayOfWeek;
@@ -34,13 +34,15 @@ public class Allocation {
 	@Column(name = "hourEndTime", nullable = false)
 	private Time hourEndTime;
 
-	@JoinColumn(nullable = false)
 	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
 	private Professor professor;
 
-	@JoinColumn(nullable = false)
 	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
 	private Course course;
+	
+	
 	
 
 }

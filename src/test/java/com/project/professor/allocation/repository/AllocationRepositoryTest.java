@@ -15,6 +15,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.project.professor.allocation.entity.Allocation;
 import com.project.professor.allocation.entity.Course;
+import com.project.professor.allocation.entity.Department;
 import com.project.professor.allocation.entity.Professor;
 
 @DataJpaTest
@@ -28,17 +29,18 @@ public class AllocationRepositoryTest {
 
 	@Test
 	public void create() {
-		Professor professor = new Professor();
-		professor.setCpf("0123456");
-		professor.setId(1l);
-		professor.setName("Carlos");;
+		
+		Department dpt = new Department();
+		dpt.setId(1l);
+		
+		Professor professor = new Professor(); 
+		professor.setId(3l);
 
 		Course course = new Course();
 		course.setId(1l);
-		course.setName("Ingles patrocinado");
 
 		Allocation alloc1 = new Allocation();
-		alloc1.setIdLong(null);;
+		alloc1.setId(null);
 		alloc1.setDayOfWeek(DayOfWeek.FRIDAY);
 		alloc1.setHourStart(Time.valueOf("14:00:00"));
 		alloc1.setHourEndTime(Time.valueOf("16:00:00"));
@@ -58,10 +60,9 @@ public class AllocationRepositoryTest {
 
 		Course course = new Course();
 		course.setId(1l);
-		course.setName("Ingles patrocinado");
 
 		Allocation alloc1 = new Allocation();
-		alloc1.setIdLong(null);
+		alloc1.setId(null);
 		alloc1.setDayOfWeek(DayOfWeek.FRIDAY);
 		alloc1.setHourStart(Time.valueOf("20:00:00"));
 		alloc1.setHourEndTime(Time.valueOf("22:00:00"));

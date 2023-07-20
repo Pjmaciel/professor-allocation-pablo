@@ -16,10 +16,10 @@ import java.util.Optional;
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
 @TestPropertySource(locations = "classpath:application.properties")
-public class DepartamentRepositoryTest {
+public class DepartmentRepositoryTest {
 
     @Autowired
-    DepartamentRepository departmentRepository;
+    DepartmentRepository departmentRepository;
     
     @Test
     void findAll() {
@@ -31,16 +31,19 @@ public class DepartamentRepositoryTest {
     @Test
     void findById() {
     	Long id = 2l;
+    	
     	Optional<Department> testeFindByIDepartament = departmentRepository.findById(id);
     	Department dpt = testeFindByIDepartament.orElse(null); 
+    	
     	System.out.println(dpt);
+    	
     	
     }
     
     @Test
     void create() {
     	Department dpt1 = new Department();
-    	dpt1.setName("Aula Bruno");
+    	dpt1.setName("Aula2 Bruno");
     	dpt1.setId(null);
     	
     	Department dpt2 = departmentRepository.save(dpt1);

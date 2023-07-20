@@ -17,61 +17,54 @@ import java.util.List;
 @TestPropertySource(locations = "classpath:application.properties")
 public class CourseRepositoryTest {
 
-    @Autowired
-    CourseRepository courseRepository;
-    
-    
-    @Test
-    public void create() {
-        Course course = new Course();
-        course.setId(null);
-        course.setName("Teste de curso");
+	@Autowired
+	CourseRepository courseRepository;
 
-        course = courseRepository.save(course);
+	@Test
+	public void create() {
+		Course course = new Course();
+		course.setName("Teste2 de curso");
+		course = courseRepository.save(course);
 
-        System.out.println(course);
-    }
+		System.out.println(course);
+	}
 
-    @Test
-    public void findAll() {
-        List<Course> courses = courseRepository.findAll();
+	@Test
+	public void findAll() {
+		List<Course> courses = courseRepository.findAll();
 
-        // Print
-        courses.forEach(System.out::println);
-    }
+		courses.forEach(System.out::println);
+	}
 
-    @Test
-    public void findById() {
-        // Arrange
-        Long id = 1L;
+	@Test
+	public void findById() {
+		Long id = 1L;
 
-        // Act
-        Course course = courseRepository.findById(id).orElse(null);
+		Course course = courseRepository.findById(id).orElse(null);
 
-        // Print
-        System.out.println(course);
-    }
+		System.out.println(course);
+	}
 
-    @Test
-    public void update() {
-        Course course = new Course();
-        course.setId(1L);
-        course.setName("Course 2");
+	@Test
+	public void update() {
+		Course course = new Course();
+		course.setId(1L);
+		course.setName("Course 2");
 
-        course = courseRepository.save(course);
+		course = courseRepository.save(course);
 
-        System.out.println(course);
-    }
+		System.out.println(course);
+	}
 
-    @Test
-    public void deleteById() {
-        Long id = 1L;
+	@Test
+	public void deleteById() {
+		Long id = 1L;
 
-        courseRepository.deleteById(id);
-    }
+		courseRepository.deleteById(id);
+	}
 
-    @Test
-    public void deleteAll() {
-        courseRepository.deleteAllInBatch();
-    }
+	@Test
+	public void deleteAll() {
+		courseRepository.deleteAllInBatch();
+	}
 }
