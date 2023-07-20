@@ -12,8 +12,8 @@ import lombok.ToString;
 
 
 @ToString
-@Setter
 @Getter
+@Setter
 @Entity
 public class Course {
 	@Id
@@ -22,6 +22,6 @@ public class Course {
 	
 	@Column(name = "name", nullable = false)
 	String name;
-	
 
+	
 }

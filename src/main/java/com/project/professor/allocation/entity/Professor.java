@@ -26,13 +26,14 @@ public class Professor {
 	@Column(name = "name", nullable = false)
 	private String name;
 	
-	@Column(unique = true, nullable = false, length = 11)
+	@Column(name = "cpf", unique = true, nullable = false)
 	private String cpf;
 	
-	
-	@JoinColumn(nullable = false) //anotacoes apresentam metainformacoes aqui da nome para coluna
+		
 	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false) //anotacoes apresentam metainformacoes aqui da nome para coluna
 	private Department department;// aqui nao é uma fk e sim um objeto
 
+	
 
 }
