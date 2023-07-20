@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.project.professor.allocation.entity.Department;
 
 @Repository
-public interface DepartamentRepository extends JpaRepository<Department, Long> {
+public interface DepartmentRepository extends JpaRepository<Department, Long> {
 	
-	List<Department> findByNameLikeContaining(String name);
+	List<Department> findByNameContaining(String name);
 
 }
