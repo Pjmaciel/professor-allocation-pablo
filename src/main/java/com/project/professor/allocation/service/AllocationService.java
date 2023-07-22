@@ -51,7 +51,6 @@ public class AllocationService {
 
 		Long alloId = allocation.getId();
 
-		
 		if (repo.existsById(alloId)) {
 
 			return saveInternal(allocation);
@@ -64,18 +63,38 @@ public class AllocationService {
 
 	}
 
-	private Allocation saveInternal(Allocation allocation) {
-	    
-		Allocation savedAllocation = repo.save(allocation); // Salva a alocação no banco de dados
+	public void deleteById(Long id) {
 
-	    Long professorId = savedAllocation.getProfessor().getId(); // Obtém o ID do professor associado à alocação
+		if (repo.existsById(id)) {
 
-	    Professor professor = profService.findById(professorId); // Obtém o professor com base no ID
+			repo.deleteById(id);
 
-	    savedAllocation.setProfessor(professor); // Define o professor na alocação atualizada
+		}
 
-	    return savedAllocation;
 	}
 
+	public void deleteAll() {
+
+		repo.deleteAllInBatch();
+
+	}
+
+	private Allocation saveInternal(Allocation allocation) {
+		if (allocation.getHourStart().compareTo(allocation.getHourEndTime()) > 0) {
+			throw new RuntimeException("A hora de início não pode ser depois da hora de término.");
+		} else {
+			Allocation savedAllocation = repo.save(allocation); // Salva a alocação no banco de dados
+
+			Long professorId = savedAllocation.getProfessor().getId(); // Obtém o ID do professor associado à alocação
+			Professor professor = profService.findById(professorId); // Obtém o professor com base no ID
+			savedAllocation.setProfessor(professor); // Define o professor na alocação atualizada
+
+			Long courseId = savedAllocation.getCourse().getId(); // Obtém o ID do curso associado à alocação
+			Course course = courseService.findById(courseId); // Obtém o curso com base no ID
+			savedAllocation.setCourse(course); // Define o curso na alocação atualizada
+
+			return savedAllocation; // Retorna a alocação salva atualizada
+		}
+	}
 
 }
