@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.project.professor.allocation.entity.Department;
 
 @Repository
-public interface DepartmentRepository extends JpaRepository<Department, Long> {
+public interface DepartmentRepository extends JpaRepository<Department, Long>{
 	
 	List<Department> findByNameContaining(String name);
 
